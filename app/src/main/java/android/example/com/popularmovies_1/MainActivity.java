@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tv_test;
     ImageView imgTest;
-    ArrayList<MovieDetails> movieDetails = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
                 return null;
             }
 
-
         }
 
         @Override
@@ -69,9 +67,9 @@ public class MainActivity extends AppCompatActivity {
 
             String JSONString =JSONData[0];
             JSONUtil jsonUtil = new JSONUtil();
-            movieDetails = jsonUtil.populateFromJson(JSONString);
+            MovieDetails[] mainMovieDetails = jsonUtil.populateFromJson(JSONString);
           for (int i=0; i<1;i++) {
-              tv_test.setText(movieDetails.get(i).getPlotSynopsis());
+              tv_test.setText(mainMovieDetails[i].getPlotSynopsis());
           }
 
             //Picasso.get().load(movieDetails.getThumbnail()).into(imgTest);
