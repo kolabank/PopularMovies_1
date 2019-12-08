@@ -32,9 +32,8 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.Thum
         Context context = viewGroup.getContext();
         int layoutForGridItem = R.layout.image_layout;
         LayoutInflater inflater = LayoutInflater.from(context);
-        boolean shouldAttachToParentImmediately = false;
 
-        View view = inflater.inflate(layoutForGridItem, viewGroup, shouldAttachToParentImmediately);
+        View view = inflater.inflate(layoutForGridItem, viewGroup, false);
         ThumbnailAdapterViewHolder viewHolder = new ThumbnailAdapterViewHolder(view);
 
         return viewHolder;

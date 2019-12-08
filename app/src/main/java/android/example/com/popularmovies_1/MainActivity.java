@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int NUM_LIST_ITEMS = 20;
     private ThumbnailAdapter tAdapter;
     private RecyclerView thumbnailList;
 
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2); //GridLayoutManager takes 2 parameters
 
         thumbnailList.setLayoutManager(gridLayoutManager);
-        thumbnailList.setHasFixedSize(true);
+       // thumbnailList.setHasFixedSize(false);
 
 
 
