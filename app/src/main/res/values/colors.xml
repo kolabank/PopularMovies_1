@@ -3,4 +3,6 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="mainBackgroundColour">#c4d6f2</color>
+    <color name="detailedActMovieTitleColor">#7398d1</color>
 </resources>

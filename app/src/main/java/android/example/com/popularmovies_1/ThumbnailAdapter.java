@@ -60,7 +60,9 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.Thum
         super(itemView);
 
         imageView = itemView.findViewById(R.id.iv_thumbnail);
+
     }
+
 
     void bind (int listIndex){
 
