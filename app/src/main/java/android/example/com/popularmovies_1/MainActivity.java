@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -109,5 +112,27 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater =getMenuInflater();
+        inflater.inflate(R.menu.sort_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if(id==R.id.action_popular){
+        return  true;
+        }
+
+        else if (id==R.id.action_rating){
+
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
 
