@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
 
     private ThumbnailAdapter tAdapter;
     private RecyclerView thumbnailList;
-    String [] tArray;
+    public static String [] thumbArray, ratingArray, synopsisArray, dateArrray, titleArray;
 
 
 
@@ -79,13 +79,22 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
 
             JSONUtil jsonUtil = new JSONUtil();
             jsonUtil.populateFromJson(JSONData[0]);
-            tArray = new String[jsonUtil.thumbNailArray.length];
+            thumbArray = new String[jsonUtil.thumbNailArray.length];
+            ratingArray=new String[jsonUtil.userRatingArray.length];
+            synopsisArray = new String[jsonUtil.plotSynopsisArray.length];
+            dateArrray =new String[jsonUtil.releaseDateArray.length];
+            titleArray = new String[jsonUtil.originalTitleArray.length];
 
             for (int i=0;i<jsonUtil.thumbNailArray.length;i++){
-                tArray[i] = jsonUtil.thumbNailArray[i];
+                thumbArray[i] = jsonUtil.thumbNailArray[i];
+                ratingArray[i]=jsonUtil.userRatingArray[i];
+                synopsisArray[i] = jsonUtil.plotSynopsisArray[i];
+                dateArrray[i] = jsonUtil.releaseDateArray[i];
+                titleArray[i]=jsonUtil.originalTitleArray[i];
+
             }
 
-            tAdapter = new ThumbnailAdapter(tArray);
+            tAdapter = new ThumbnailAdapter(thumbArray);
             thumbnailList.setAdapter(tAdapter);
         }
     }
@@ -97,8 +106,6 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
         Intent intent = new Intent(MainActivity.this, DetailedActivity.class);
         intent.putExtra("ItemPosition", pos);
         startActivity(intent);
-
-     //   Toast.makeText(this,pos+"",Toast.LENGTH_SHORT).show();
 
     }
 
