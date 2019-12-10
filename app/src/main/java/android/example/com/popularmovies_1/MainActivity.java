@@ -1,5 +1,6 @@
 package android.example.com.popularmovies_1;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -16,10 +18,11 @@ import org.w3c.dom.Text;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ClickViewInterface{
 
     private ThumbnailAdapter tAdapter;
     private RecyclerView thumbnailList;
+    String [] tArray;
 
 
 
@@ -48,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         new gettingResponse().execute(popularURLString);
     }
 
+
     public class gettingResponse extends AsyncTask<String, Void, String[]> {
 
         @Override
@@ -75,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
             JSONUtil jsonUtil = new JSONUtil();
             jsonUtil.populateFromJson(JSONData[0]);
-            String[] tArray = new String[jsonUtil.thumbNailArray.length];
+            tArray = new String[jsonUtil.thumbNailArray.length];
 
             for (int i=0;i<jsonUtil.thumbNailArray.length;i++){
                 tArray[i] = jsonUtil.thumbNailArray[i];
@@ -84,6 +88,18 @@ public class MainActivity extends AppCompatActivity {
             tAdapter = new ThumbnailAdapter(tArray);
             thumbnailList.setAdapter(tAdapter);
         }
+    }
+
+
+    @Override
+    public void userItemClick(int pos) {
+
+        Intent intent = new Intent(MainActivity.this, DetailedActivity.class);
+        intent.putExtra("ItemPosition", pos);
+        startActivity(intent);
+
+     //   Toast.makeText(this,pos+"",Toast.LENGTH_SHORT).show();
+
     }
 
 }

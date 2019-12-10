@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -34,7 +35,7 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.Thum
         LayoutInflater inflater = LayoutInflater.from(context);
 
         View view = inflater.inflate(layoutForGridItem, viewGroup, false);
-        ThumbnailAdapterViewHolder viewHolder = new ThumbnailAdapterViewHolder(view);
+        ThumbnailAdapterViewHolder viewHolder = new ThumbnailAdapterViewHolder(view, context);
 
         return viewHolder;
     }
@@ -55,14 +56,20 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.Thum
     class ThumbnailAdapterViewHolder extends RecyclerView.ViewHolder{
 
         ImageView imageView;
+        FrameLayout frameLayout;
 
-    public ThumbnailAdapterViewHolder(View itemView) {
+    public ThumbnailAdapterViewHolder(View itemView, final Context context) {
         super(itemView);
 
         imageView = itemView.findViewById(R.id.iv_thumbnail);
-
+        frameLayout = itemView.findViewById(R.id.frame_layout);
+        frameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) context).userItemClick(getAdapterPosition());
+            }
+        });
     }
-
 
     void bind (int listIndex){
 
