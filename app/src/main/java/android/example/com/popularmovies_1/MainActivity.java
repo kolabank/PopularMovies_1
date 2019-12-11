@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
     private RecyclerView thumbnailList; //RecyclerView is named as thumbnailList
 
     //To hold the string value of the URL for the movie API using popularity and top rating
-    String popularURLString, topRatedURLString;
+    private String popularURLString, topRatedURLString;
 
     //These arrays hold the string values of the description of the movies
      public static String [] thumbArray, ratingArray, synopsisArray, dateArrray, titleArray;
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
 
     //Perform networking activities in background thread
 
-    public class gettingResponse extends AsyncTask<String, Void, String[]> {
+    private class gettingResponse extends AsyncTask<String, Void, String[]> {
 
         @Override
         protected String[] doInBackground(String... params) {
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
 
     //This method will takes the JSON string as argument and sets data into the arraye earlier declared
 
-    public void assignMethod (String JSONParameter){
+    private void assignMethod (String JSONParameter){
 
         JSONUtil jsonUtil = new JSONUtil();
         jsonUtil.populateFromJson(JSONParameter);

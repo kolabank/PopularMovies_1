@@ -19,7 +19,6 @@ import java.util.zip.Inflater;
 public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.ThumbnailAdapterViewHolder>{
 
     private String[] data;
-    private  int mNumberItems;
 
 
     public ThumbnailAdapter(String[] data){

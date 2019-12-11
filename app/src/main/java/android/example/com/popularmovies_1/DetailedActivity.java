@@ -13,8 +13,8 @@ import org.w3c.dom.Text;
 
 public class DetailedActivity extends AppCompatActivity {
 
-    TextView tv_DetailedTitle, tv_DetailedReleaseDate, tv_DetailedSynopsis,tv_DetailedUserRating;
-    ImageView iv_DetailedThumbnail;
+  private  TextView tv_DetailedTitle, tv_DetailedReleaseDate, tv_DetailedSynopsis,tv_DetailedUserRating;
+    private ImageView iv_DetailedThumbnail;
 
 
     @Override
@@ -32,24 +32,22 @@ public class DetailedActivity extends AppCompatActivity {
        Intent intentThatStartedActivity = getIntent();
        Integer movieReference =  intentThatStartedActivity.getIntExtra("ItemPosition",0);
 
-        Toast.makeText(this, movieReference+"", Toast.LENGTH_SHORT).show();
-
-        populateDetailedActivity(movieReference);
+         populateDetailedActivity(movieReference);
 
 
 
     }
 
-    public void populateDetailedActivity(int position){
+    private void populateDetailedActivity(int position){
 
         String userRating = MainActivity.ratingArray[position];
-        tv_DetailedUserRating.setText("User Rating: " + userRating);
+        tv_DetailedUserRating.setText(getString(R.string.detailedUserRating) + " " + userRating);
 
         String originalTitle = MainActivity.titleArray[position];
         tv_DetailedTitle.setText(originalTitle);
 
         String releaseDate = MainActivity.dateArrray[position];
-        tv_DetailedReleaseDate.setText("Release Date: "+ releaseDate);
+        tv_DetailedReleaseDate.setText(getString(R.string.detaileReleaseDate) + " " + releaseDate);
 
         String plotSynopsis = MainActivity.synopsisArray[position];
         tv_DetailedSynopsis.setText(plotSynopsis);
