@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Popular Movies</string>
     <string name="content_desc">Movie Thumbnail</string>
-    <string name="popularMenuTitle">Popularity</string>
-    <string name="ratingMentuTitle">Rating</string>
-    <string name="detailedUserRating">User Rating: </string>
-    <string name="detaileReleaseDate">Release Date: </string>
+    <string name="popularMenuTitle">Most Popular</string>
+    <string name="ratingMentuTitle">Highest Rated</string>
+    <string name="detailedUserRating"> User Rating: </string>
+    <string name="detailedReleaseDate"> Release Date: </string>
+    <string name= "noIntenetConnection">No internet connection detected. Kindly connect</string>
 </resources>

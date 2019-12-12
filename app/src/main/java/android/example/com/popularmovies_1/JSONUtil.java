@@ -3,8 +3,6 @@ package android.example.com.popularmovies_1;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
 public class JSONUtil {
 
     //MovieDetails array declared to hold required details for all movies

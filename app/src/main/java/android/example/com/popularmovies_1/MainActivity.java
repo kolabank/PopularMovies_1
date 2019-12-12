@@ -6,28 +6,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ImageView;
+import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-import com.squareup.picasso.Picasso;
-import org.w3c.dom.Text;
+
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.net.URL;
-import java.util.ArrayList;
 
 
 // The MainActivity implements the ClickViewInterface to allow the recylcer view images to respond to clicks
 
 public class MainActivity extends AppCompatActivity implements ClickViewInterface{
 
-    private ThumbnailAdapter tAdapter;
     private RecyclerView thumbnailList; //RecyclerView is named as thumbnailList
 
     //To hold the string value of the URL for the movie API using popularity and top rating
     private String popularURLString, topRatedURLString;
+
+    private TextView txtNoInternet;
 
     //These arrays hold the string values of the description of the movies
      public static String [] thumbArray, ratingArray, synopsisArray, dateArrray, titleArray;
@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
         setContentView(R.layout.activity_main);
 
         thumbnailList = findViewById(R.id.rv_recyclerView);
+        txtNoInternet = findViewById(R.id.txtNoInternet);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2); //GridLayoutManager takes 2 parameters
         thumbnailList.setLayoutManager(gridLayoutManager);
         thumbnailList.setHasFixedSize(false);
@@ -48,8 +49,17 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
         popularURLString = "https://api.themoviedb.org/3/movie/popular?api_key=ac151895b9e322dd2d1a1cedef5bf9ab";
         topRatedURLString = "https://api.themoviedb.org/3/movie/top_rated?api_key=ac151895b9e322dd2d1a1cedef5bf9ab";
 
+        //Check for internet connectivity by calling isOnline method
+
+        if (isOnline()==false){
+            txtNoInternet.setVisibility(View.VISIBLE);
+        }
+
+        else{
+            txtNoInternet.setVisibility(View.INVISIBLE);
         //The default response (by popularity) when app is run
         new gettingResponse().execute(popularURLString);
+        }
     }
 
     //To handle selection of sorting either by popularity or top rating
@@ -65,16 +75,35 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-        if(id==R.id.action_popular){
-            new gettingResponse().execute(popularURLString);
-            return  true;
-        }
 
-        else if (id==R.id.action_rating){
-            new gettingResponse().execute(topRatedURLString);
-            return true;
-        }
+        if (isOnline() == false) {
+            txtNoInternet.setVisibility(View.VISIBLE);
+
+        } else {
+            if (id == R.id.action_popular) {
+                new gettingResponse().execute(popularURLString);
+                return true;
+            } else if (id == R.id.action_rating) {
+                new gettingResponse().execute(topRatedURLString);
+                return true;
+            }
+                }
         return super.onOptionsItemSelected(item);
+    }
+
+// This method checks for internet connectivity
+
+    public boolean isOnline() {
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
+            int     exitValue = ipProcess.waitFor();
+            return (exitValue == 0);
+        }
+        catch (IOException e)          { e.printStackTrace(); }
+        catch (InterruptedException e) { e.printStackTrace(); }
+
+        return false;
     }
 
 
@@ -104,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
 
         @Override
         protected void onPostExecute(String[] JSONData) {
+            ThumbnailAdapter tAdapter;
             assignMethod(JSONData[0]); //Method defined below
             tAdapter = new ThumbnailAdapter(thumbArray);
             thumbnailList.setAdapter(tAdapter);

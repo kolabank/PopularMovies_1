@@ -5,11 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 public class DetailedActivity extends AppCompatActivity {
 
@@ -47,7 +44,7 @@ public class DetailedActivity extends AppCompatActivity {
         tv_DetailedTitle.setText(originalTitle);
 
         String releaseDate = MainActivity.dateArrray[position];
-        tv_DetailedReleaseDate.setText(getString(R.string.detaileReleaseDate) + " " + releaseDate);
+        tv_DetailedReleaseDate.setText(getString(R.string.detailedReleaseDate)+ " " + releaseDate);
 
         String plotSynopsis = MainActivity.synopsisArray[position];
         tv_DetailedSynopsis.setText(plotSynopsis);
