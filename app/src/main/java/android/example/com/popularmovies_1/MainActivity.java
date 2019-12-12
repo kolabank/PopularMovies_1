@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
 
 
         //Assign string value to strings
-        popularURLString = "https://api.themoviedb.org/3/movie/popular?api_key=ac151895b9e322dd2d1a1cedef5bf9ab";
-        topRatedURLString = "https://api.themoviedb.org/3/movie/top_rated?api_key=ac151895b9e322dd2d1a1cedef5bf9ab";
+        popularURLString = "https://api.themoviedb.org/3/movie/popular?api_key=INSERT API KEY";
+        topRatedURLString = "https://api.themoviedb.org/3/movie/top_rated?api_key=INSERT API KEY";
 
 
         //Check for internet connectivity by calling isOnline method
