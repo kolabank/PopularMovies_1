@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
         popularURLString = "https://api.themoviedb.org/3/movie/popular?api_key=ac151895b9e322dd2d1a1cedef5bf9ab";
         topRatedURLString = "https://api.themoviedb.org/3/movie/top_rated?api_key=ac151895b9e322dd2d1a1cedef5bf9ab";
 
-        //Check for internet connectivity by calling isOnline method
 
+        //Check for internet connectivity by calling isOnline method
         if (isOnline()==false){
             txtNoInternet.setVisibility(View.VISIBLE);
         }
@@ -62,10 +62,10 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
         }
     }
 
+
     //To handle selection of sorting either by popularity or top rating
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         MenuInflater inflater =getMenuInflater();
         inflater.inflate(R.menu.sort_menu, menu);
         return true;
@@ -73,9 +73,9 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int id = item.getItemId();
 
+        //Check for internet connection to prevent program from crashing when options are selected when there is internet connectivity
         if (isOnline() == false) {
             txtNoInternet.setVisibility(View.VISIBLE);
 
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
         return super.onOptionsItemSelected(item);
     }
 
-// This method checks for internet connectivity
+// This method checks for internet connectivity and returns a boolean value
 
     public boolean isOnline() {
         Runtime runtime = Runtime.getRuntime();

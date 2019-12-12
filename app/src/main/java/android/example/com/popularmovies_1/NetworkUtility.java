@@ -12,6 +12,7 @@ import java.util.Scanner;
 public final class NetworkUtility {
 
 
+    // Method to convert string to URL
     public static URL makeUrl(String URLString){
 
     Uri popularUri= Uri.parse(URLString);
@@ -24,6 +25,8 @@ public final class NetworkUtility {
     return popularURL;
     }
 
+
+    //Method to get read the webpage (JSON data) and return as a string (urlResponse)
 
     public static String urlResponse ( URL url) throws IOException{
         HttpURLConnection uRLConnection = (HttpURLConnection)url.openConnection();

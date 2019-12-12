@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 
+//Adapter for recycler view
+
 public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.ThumbnailAdapterViewHolder>{
 
     private String[] data;

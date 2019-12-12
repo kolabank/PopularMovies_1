@@ -35,6 +35,8 @@ public class DetailedActivity extends AppCompatActivity {
 
     }
 
+    //Method to set values into the layout views
+
     private void populateDetailedActivity(int position){
 
         String userRating = MainActivity.ratingArray[position];
