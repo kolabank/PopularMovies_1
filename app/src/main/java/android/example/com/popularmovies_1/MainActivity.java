@@ -1,6 +1,9 @@
 package android.example.com.popularmovies_1;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,8 +49,15 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
 
 
         //Assign string value to strings
-        popularURLString = "https://api.themoviedb.org/3/movie/popular?api_key=INSERT API KEY";
-        topRatedURLString = "https://api.themoviedb.org/3/movie/top_rated?api_key=INSERT API KEY";
+        popularURLString = "https://api.themoviedb.org/3/movie/popular?api_key=ac151895b9e322dd2d1a1cedef5bf9ab";
+        topRatedURLString = "https://api.themoviedb.org/3/movie/top_rated?api_key=ac151895b9e322dd2d1a1cedef5bf9ab";
+
+        ConnectivityManager cm =
+                (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
 
 
         //Check for internet connectivity by calling isOnline method
@@ -91,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
         return super.onOptionsItemSelected(item);
     }
 
-// This method checks for internet connectivity and returns a boolean value
+// This method checks for internet connectivity
 
     public boolean isOnline() {
         Runtime runtime = Runtime.getRuntime();
@@ -140,8 +150,7 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
         }
     }
 
-
-    //This method will takes the JSON string as argument and sets data into the arraye earlier declared
+   //This method will takes the JSON string as argument and sets data into the arraye earlier declared
 
     private void assignMethod (String JSONParameter){
 
