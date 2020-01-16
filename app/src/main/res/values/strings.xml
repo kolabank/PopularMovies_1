@@ -5,5 +5,6 @@
     <string name="ratingMentuTitle">Highest Rated</string>
     <string name="detailedUserRating"> User Rating: </string>
     <string name="detailedReleaseDate"> Release Date: </string>
+    <string name="trailer">Trailers</string>
     <string name= "noIntenetConnection">No internet connection detected. Kindly connect</string>
 </resources>

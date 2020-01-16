@@ -8,7 +8,7 @@ public class JSONUtil {
     //MovieDetails array declared to hold required details for all movies
 
     String [] originalTitleArray, plotSynopsisArray,
-            releaseDateArray, userRatingArray, thumbNailArray;
+            releaseDateArray, userRatingArray, thumbNailArray, movieIdArray;
 
 
     //This method reads the JSON into respective variables and assigns values into the MovieDetails array elements
@@ -26,6 +26,7 @@ public class JSONUtil {
            releaseDateArray = new String[resultsArray.length()];
            userRatingArray = new String[resultsArray.length()];
            thumbNailArray = new String[resultsArray.length()];
+           movieIdArray = new String[resultsArray.length()];
 
 
            for (int i = 0; i<resultsArray.length(); i++){
@@ -56,6 +57,10 @@ public class JSONUtil {
                String fullPosterPath = "https://image.tmdb.org/t/p/w185/"+posterPathJSON;
                movieDetails.setThumbnail(fullPosterPath);
                thumbNailArray[i] = movieDetails.getThumbnail();
+
+               String movieId = furtherDetails.optString("id");
+               movieDetails.setMovieId(movieId);
+               movieIdArray[i] = movieDetails.getMovieId();
            }
 
        }

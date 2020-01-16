@@ -2,7 +2,7 @@
 <resources>
 
     <dimen name="detailedActivityLinearLayoutHeight">200dp</dimen>
-    <dimen name="moviedDetailsFont">17sp</dimen>
+    <dimen name="moviesDetailsFont">17sp</dimen>
     <dimen name="synopisFont">16sp</dimen>
     <dimen name="detailedThumbnailWidth">150dp</dimen>
     <dimen name="detailedThumbnailHeight">200dp</dimen>

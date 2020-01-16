@@ -28,12 +28,12 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
     private RecyclerView thumbnailList; //RecyclerView is named as thumbnailList
 
     //To hold the string value of the URL for the movie API using popularity and top rating
-    private String popularURLString, topRatedURLString;
+    private String popularURLString, topRatedURLString, trailersURLString, reviewsURLString;
 
     private TextView txtNoInternet;
 
     //These arrays hold the string values of the description of the movies
-     public static String [] thumbArray, ratingArray, synopsisArray, dateArrray, titleArray;
+     public static String [] thumbArray, ratingArray, synopsisArray, dateArrray, titleArray, movieIDArray;
 
 
     @Override
@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
 
 
         //Assign string value to strings
-        popularURLString = "https://api.themoviedb.org/3/movie/popular?api_key=ac151895b9e322dd2d1a1cedef5bf9ab";
-        topRatedURLString = "https://api.themoviedb.org/3/movie/top_rated?api_key=ac151895b9e322dd2d1a1cedef5bf9ab";
+        popularURLString = new UriBuilder().makeURI("popular");
+        topRatedURLString =new UriBuilder().makeURI("top_rated");
 
         ConnectivityManager cm =
                 (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -161,6 +161,7 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
         synopsisArray = new String[jsonUtil.plotSynopsisArray.length];
         dateArrray =new String[jsonUtil.releaseDateArray.length];
         titleArray = new String[jsonUtil.originalTitleArray.length];
+        movieIDArray = new String[jsonUtil.movieIdArray.length];
 
         for (int i=0;i<jsonUtil.thumbNailArray.length;i++){
             thumbArray[i] = jsonUtil.thumbNailArray[i];
@@ -168,6 +169,7 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
             synopsisArray[i] = jsonUtil.plotSynopsisArray[i];
             dateArrray[i] = jsonUtil.releaseDateArray[i];
             titleArray[i]=jsonUtil.originalTitleArray[i];
+            movieIDArray[i] = jsonUtil.movieIdArray[i];
 
         }
 
