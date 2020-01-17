@@ -9,11 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -33,7 +35,8 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
     private TextView txtNoInternet;
 
     //These arrays hold the string values of the description of the movies
-     public static String [] thumbArray, ratingArray, synopsisArray, dateArrray, titleArray, movieIDArray;
+     public static String [] thumbArray, ratingArray, synopsisArray, dateArrray, titleArray;
+     public static int[] movieIDArray;
 
 
     @Override
@@ -52,24 +55,17 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
         popularURLString = new UriBuilder().makeURI("popular");
         topRatedURLString =new UriBuilder().makeURI("top_rated");
 
-        ConnectivityManager cm =
-                (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        boolean isConnected = activeNetwork != null &&
-                activeNetwork.isConnectedOrConnecting();
-
 
         //Check for internet connectivity by calling isOnline method
-        if (isOnline()==false){
-            txtNoInternet.setVisibility(View.VISIBLE);
-        }
+      //  if (isOnline()==1){
+   //         txtNoInternet.setVisibility(View.VISIBLE);
+     //   }
 
-        else{
-            txtNoInternet.setVisibility(View.INVISIBLE);
+    //    else if (isOnline()==0){
+   //         txtNoInternet.setVisibility(View.INVISIBLE);
         //The default response (by popularity) when app is run
         new gettingResponse().execute(popularURLString);
-        }
+    //    }
     }
 
 
@@ -86,10 +82,10 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
         int id = item.getItemId();
 
         //Check for internet connection to prevent program from crashing when options are selected when there is internet connectivity
-        if (isOnline() == false) {
-            txtNoInternet.setVisibility(View.VISIBLE);
+      //  if (isOnline() == 1) {
+           // txtNoInternet.setVisibility(View.VISIBLE);
 
-        } else {
+      //  } else if(isOnline()==0) {
             if (id == R.id.action_popular) {
                 new gettingResponse().execute(popularURLString);
                 return true;
@@ -97,24 +93,23 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
                 new gettingResponse().execute(topRatedURLString);
                 return true;
             }
-                }
+     //           }
         return super.onOptionsItemSelected(item);
     }
 
 // This method checks for internet connectivity
 
-    public boolean isOnline() {
+    public int isOnline() {
         Runtime runtime = Runtime.getRuntime();
         try {
             Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
             int     exitValue = ipProcess.waitFor();
-            return (exitValue == 0);
-        }
+            return exitValue;
+                    }
         catch (IOException e)          { e.printStackTrace(); }
         catch (InterruptedException e) { e.printStackTrace(); }
-
-        return false;
-    }
+            return 1;
+          }
 
 
     //Perform networking activities in background thread
@@ -161,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
         synopsisArray = new String[jsonUtil.plotSynopsisArray.length];
         dateArrray =new String[jsonUtil.releaseDateArray.length];
         titleArray = new String[jsonUtil.originalTitleArray.length];
-        movieIDArray = new String[jsonUtil.movieIdArray.length];
+        movieIDArray = new int[jsonUtil.movieIdArray.length];
 
         for (int i=0;i<jsonUtil.thumbNailArray.length;i++){
             thumbArray[i] = jsonUtil.thumbNailArray[i];
@@ -169,9 +164,14 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
             synopsisArray[i] = jsonUtil.plotSynopsisArray[i];
             dateArrray[i] = jsonUtil.releaseDateArray[i];
             titleArray[i]=jsonUtil.originalTitleArray[i];
+
             movieIDArray[i] = jsonUtil.movieIdArray[i];
 
+            String  movieIdUri =  new UriBuilder().makeURI2(String.valueOf(movieIDArray[i]));
+
         }
+
+
 
     }
 
@@ -184,10 +184,10 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
         intent.putExtra("ItemPosition", pos);
         startActivity(intent);
 
+        }
+
     }
 
 
 
-
-}
 

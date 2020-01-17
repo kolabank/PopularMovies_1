@@ -7,14 +7,14 @@ public class MovieDetails {
     private String userRating;
     private String releaseDate;
     private  String thumbnail;
-    private String movieId;
+    private int movieId;
 
 
     public  MovieDetails(){
 
     }
 
-public MovieDetails (String originalTitle, String plotSynopsis, String userRating, String releaseDate, String thumbnail, String movieId) {
+public MovieDetails (String originalTitle, String plotSynopsis, String userRating, String releaseDate, String thumbnail, int movieId) {
 
     //Setters for movie details variables
 
@@ -46,7 +46,7 @@ public MovieDetails (String originalTitle, String plotSynopsis, String userRatin
 
     public void setThumbnail(String thumbnail) { this.thumbnail = thumbnail;}
 
-    public void setMovieId(String thumbnail) { this.movieId = movieId;}
+    public void setMovieId(int movieId) { this.movieId = movieId;}
 
     //Getters for movie details variables
     
@@ -70,7 +70,7 @@ public MovieDetails (String originalTitle, String plotSynopsis, String userRatin
         return thumbnail;
     }
 
-    public String getMovieId(){ return movieId;}
+    public int getMovieId(){ return movieId;}
 
 
 }
