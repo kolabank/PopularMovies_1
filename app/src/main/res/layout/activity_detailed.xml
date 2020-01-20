@@ -98,6 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="68dp"
+        android:onClick="onClickShowReviews"
         android:text="SEE REVIEWS"
         android:background="@color/detailedActMovieTitleBackround"
         app:layout_constraintEnd_toEndOf="parent"

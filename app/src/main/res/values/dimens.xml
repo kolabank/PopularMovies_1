@@ -6,5 +6,6 @@
     <dimen name="synopisFont">16sp</dimen>
     <dimen name="detailedThumbnailWidth">150dp</dimen>
     <dimen name="detailedThumbnailHeight">200dp</dimen>
+    <dimen name="review_author">16sp</dimen>
 
 </resources>

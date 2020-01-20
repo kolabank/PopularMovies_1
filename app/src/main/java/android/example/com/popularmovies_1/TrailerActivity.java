@@ -30,7 +30,7 @@ public class TrailerActivity extends AppCompatActivity {
         Intent mIntent = getIntent();
         int reference = mIntent.getIntExtra("number",0);
         int[] movieIDArray = MainActivity.movieIDArray;
-        String movieIdUri = new UriBuilder().makeURI2(String.valueOf(movieIDArray[reference]));
+        String movieIdUri = new UriBuilder().makeURI2(String.valueOf(movieIDArray[reference]), "videos");
 
         new gettingResponse2().execute(movieIdUri);
 

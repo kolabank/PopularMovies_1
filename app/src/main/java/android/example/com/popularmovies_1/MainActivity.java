@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
 
             movieIDArray[i] = jsonUtil.movieIdArray[i];
 
-            String  movieIdUri =  new UriBuilder().makeURI2(String.valueOf(movieIDArray[i]));
+        //    String  movieIdUri =  new UriBuilder().makeURI2(String.valueOf(movieIDArray[i]),"videos");
 
         }
 

@@ -83,5 +83,13 @@ public class DetailedActivity extends AppCompatActivity {
 
 
     }
+    public void onClickShowReviews (View view){
+
+        Intent intent = new Intent (DetailedActivity.this, ReviewActivity.class);
+        intent.putExtra("number", movieReference);
+        startActivity(intent);
+
+
+    }
 
 }

@@ -1,6 +1,5 @@
 package android.example.com.popularmovies_1;
 
-
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +10,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
-
 
 //Adapter for recycler view
 
@@ -29,7 +27,9 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.Thum
     public ThumbnailAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         Context context = viewGroup.getContext();
+
         int layoutForGridItem = R.layout.image_layout;
+
         LayoutInflater inflater = LayoutInflater.from(context);
 
         View view = inflater.inflate(layoutForGridItem, viewGroup, false);
@@ -74,7 +74,6 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.Thum
         Picasso.get().load(data[listIndex]).into(imageView);
 
     }
-
 
 }
 

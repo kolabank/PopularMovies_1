@@ -35,7 +35,7 @@ public class UriBuilder {
 
     }
 
-    public String makeURI2 (String uriPath2){
+    public String makeURI2 (String uriPath2, String traOrRev){
 
 
         Uri.Builder builder = new Uri.Builder();
@@ -45,7 +45,7 @@ public class UriBuilder {
                 .appendPath(PATH1)
                 .appendPath(PATH2)
                 .appendPath(uriPath2)
-                .appendPath("videos")
+                .appendPath(traOrRev)
                 .appendQueryParameter(API_KEY, API_KEY_value);
 
         String builtUri = builder.build().toString();
@@ -70,6 +70,7 @@ public class UriBuilder {
         return builtUri;
 
     }
+
 
 
 

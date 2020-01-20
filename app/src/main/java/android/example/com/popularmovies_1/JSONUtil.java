@@ -15,6 +15,8 @@ public class JSONUtil {
 
     ArrayList<String> idArrayList;
     ArrayList<String> trailerNameList;
+    ArrayList<String> authorArrayList;
+    ArrayList<String> contentArrayList;
 
 
     //This method reads the JSON into respective variables and assigns values into the MovieDetails array elements
@@ -94,6 +96,33 @@ public class JSONUtil {
                 String name = furtherDetails.optString("name");
                 idArrayList.add(key);
                 trailerNameList.add(name);
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void populateReviewsFromJson(String jsonObject) {
+
+
+        try {
+            JSONObject rootJSON = new JSONObject(jsonObject);
+            JSONArray resultsArray = rootJSON.getJSONArray("results");
+
+
+            authorArrayList = new ArrayList<>();
+            contentArrayList = new ArrayList<>();
+
+
+            for (int i = 0; i < resultsArray.length(); i++) {
+                JSONObject furtherDetails = resultsArray.getJSONObject(i);
+                String author = furtherDetails.optString("author");
+                String content = furtherDetails.optString("content");
+                authorArrayList.add(author);
+                contentArrayList.add(content);
 
             }
 
