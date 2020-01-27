@@ -93,6 +93,11 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
                 new gettingResponse().execute(topRatedURLString);
                 return true;
             }
+
+            else if (id==R.id.action_favourites){
+                Intent intent = new Intent(MainActivity.this, FavouritesActivity.class);
+                startActivity(intent);
+            }
      //           }
         return super.onOptionsItemSelected(item);
     }

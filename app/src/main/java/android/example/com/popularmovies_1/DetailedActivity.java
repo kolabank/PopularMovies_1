@@ -5,6 +5,9 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,9 +28,11 @@ public class DetailedActivity extends AppCompatActivity {
     private Button bt_trailer, bt_review;
     private int movieReference;
 
-    int[] idNumberArray;
-
     String movieIdUri;
+
+    String thumbNailString;
+
+    private AppDataBase favDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +49,43 @@ public class DetailedActivity extends AppCompatActivity {
         bt_trailer = findViewById(R.id.bt_trailer);
 
 
+
+        favDB = AppDataBase.getInstance(getApplicationContext());
+
+
         Intent intentThatStartedActivity = getIntent();
         movieReference = intentThatStartedActivity.getIntExtra("ItemPosition", 0);
         populateDetailedActivity(movieReference);
 
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.favourites_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if (id==R.id.addFavourites){
+
+
+        FavourtiesEntry favourtiesEntry = new FavourtiesEntry(movieReference,thumbNailString);
+         favDB.favouritesDao().insertFavourite(favourtiesEntry);
+         finish();
+
+        }
+
+        else if(id==R.id.removeFavourites){
+
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     //Method to set values into the layout views
@@ -66,14 +104,12 @@ public class DetailedActivity extends AppCompatActivity {
         String plotSynopsis = MainActivity.synopsisArray[position];
         tv_DetailedSynopsis.setText(plotSynopsis);
 
-        String thumbNailString = MainActivity.thumbArray[position];
+        thumbNailString = MainActivity.thumbArray[position];
         Picasso.get().load(thumbNailString).into(iv_DetailedThumbnail);
 
         int movieIdString = MainActivity.movieIDArray[position];
 
-
     }
-
 
     public void onClickShowTrailer (View view){
 
